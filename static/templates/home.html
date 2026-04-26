@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PulseHub</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #313338;
+            color: white;
+        }
+
+        .topbar {
+            width: 100%;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1f2023;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #5865f2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .brand-text h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .brand-text p {
+            margin: 3px 0 0;
+            color: #b5bac1;
+            font-size: 13px;
+        }
+
+        .menu {
+            display: flex;
+            gap: 10px;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: white;
+            background: #3a3d45;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        .menu a:hover {
+            background: #5865f2;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 30px auto;
+            padding: 0 20px 40px;
+        }
+
+        .hero,
+        .card {
+            background: #2b2d31;
+            border-radius: 18px;
+            padding: 24px;
+            margin-bottom: 22px;
+        }
+
+        .hero h2 {
+            margin: 0 0 10px;
+            font-size: 32px;
+        }
+
+        .hero p {
+            margin: 0;
+            color: #c7cbd1;
+            line-height: 1.5;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            margin-bottom: 16px;
+        }
+
+        .search-row {
+            display: flex;
+            gap: 12px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: none;
+            border-radius: 12px;
+            background: #1e1f22;
+            color: white;
+            outline: none;
+        }
+
+        input::placeholder {
+            color: #9ca3af;
+        }
+
+        button {
+            border: none;
+            border-radius: 12px;
+            background: #5865f2;
+            color: white;
+            padding: 14px 18px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #6c78ff;
+        }
+
+        .form-stack {
+            display: grid;
+            gap: 12px;
+        }
+
+        .checkbox-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #d1d5db;
+        }
+
+        .checkbox-wrap input {
+            width: auto;
+            accent-color: #5865f2;
+        }
+
+        .community-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .community-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            background: #3a3d45;
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .community-info h4 {
+            margin: 0 0 6px;
+            font-size: 20px;
+        }
+
+        .community-info p {
+            margin: 0;
+            color: #c7cbd1;
+            font-size: 14px;
+        }
+
+        .private-label {
+            display: inline-block;
+            margin-top: 10px;
+            background: rgba(251,191,36,0.15);
+            color: #fbbf24;
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .open-link {
+            text-decoration: none;
+        }
+
+        .open-btn {
+            background: #22c55e;
+            white-space: nowrap;
+        }
+
+        .open-btn:hover {
+            background: #2ed164;
+        }
+
+        .empty {
+            color: #b5bac1;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="topbar">
+        <div class="brand">
+            <div class="brand-icon">P</div>
+            <div class="brand-text">
+                <h1>PulseHub</h1>
+                <p>Communities, friends and content all in one place</p>
+            </div>
+        </div>
+
+        <div class="menu">
+            <a href="/profile">Profile</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="hero">
+            <h2>Your space to connect, create and grow.</h2>
+            <p>
+                Join communities, create private or public groups, share content,
+                organize channels and make your profile feel more alive and professional.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Search Communities</h3>
+            <form method="GET" action="/communities">
+                <div class="search-row">
+                    <input name="q" placeholder="Search community..." value="{{ query }}">
+                    <button type="submit">Search</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3>Create Community</h3>
+            <form method="POST" class="form-stack">
+                <input name="name" placeholder="Community name" required>
+                <input name="description" placeholder="Short description">
+
+                <label class="checkbox-wrap">
+                    <input type="checkbox" name="is_private">
+                    Private community
+                </label>
+
+                <div>
+                    <button type="submit">Create group</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="card">
+            <h3>Communities</h3>
+
+            <div class="community-list">
+                {% for community in communities %}
+                    <div class="community-card">
+                        <div class="community-info">
+                            <h4>{{ community.name }}</h4>
+                            <p>{{ community.description or 'No description yet.' }}</p>
+
+                            {% if community.is_private == 1 %}
+                                <div class="private-label">🔒 Private</div>
+                            {% endif %}
+                        </div>
+
+                        <a class="open-link" href="/community/{{ community.id }}">
+                            <button class="open-btn" type="button">Open</button>
+                        </a>
+                    </div>
+                {% else %}
+                    <p class="empty">No communities found.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
